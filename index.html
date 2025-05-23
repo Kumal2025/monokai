@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portafolio Web - Monokai con Fondo y Navbar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --fondo: #272822;
+      --negro: #1e1f1c;
+      --texto: #F8F8F2;
+      --verde: #A6E22E;
+      --amarillo: #E6DB74;
+      --azul: #66D9EF;
+      --naranja: #FD971F;
+      --rosa: #F92672;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--fondo);
+      background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-blend-mode: multiply;
+      color: var(--texto);
+      padding-top: 3.5rem;
+      padding-bottom: 2rem;
+      cursor: default; /* Cursor general */
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(30, 31, 28, 0.95);
+      border-bottom: 1px solid var(--azul);
+      z-index: 999;
+    }
+
+    .nav-container {
+      max-width: 900px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
+    }
+
+    .logo {
+      color: var(--verde);
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1rem;
+      cursor: pointer; /* Solo aquí la manita */
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-links a {
+      color: var(--verde);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-family: 'Roboto Mono', monospace;
+      transition: color 0.3s ease;
+      cursor: pointer; /* Manita en enlaces */
+    }
+
+    .nav-links a:hover {
+      color: var(--rosa);
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      color: var(--verde);
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 3.5rem;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: rgba(30, 31, 28, 0.95);
+        display: none;
+      }
+
+      .nav-links a {
+        padding: 1rem;
+        border-top: 1px solid var(--fondo);
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .hamburger {
+        display: block;
+      }
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: var(--verde);
+    }
+
+    header p {
+      color: var(--amarillo);
+      font-size: 0.95rem;
+    }
+
+    main {
+      width: 100%;
+      padding: 0 1rem;
+    }
+
+    @media (min-width: 768px) {
+      main {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 0 2rem;
+      }
+    }
+
+    section {
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--rosa);
+      padding: 1rem;
+      background-color: rgba(30, 31, 28, 0.85);
+      border-radius: 4px;
+      scroll-margin-top: 5rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      border-bottom: 1px dotted var(--naranja);
+      padding-bottom: 0.3rem;
+      cursor: pointer; /* Solo los títulos tienen manita */
+    }
+
+    h2 a {
+      color: var(--azul);
+      text-decoration: none;
+    }
+
+/* Estilo tipo neon */
+h2 a:hover,
+.nav-links a:hover {
+  color: var(--rosa);
+  text-shadow: 0 0 4px var(--rosa);
+  transition: 0.2s ease;
+}
+
+/* Estilo tipo rosa */
+/*h2 a:hover,
+.nav-links a:hover {
+  background-color: rgba(249, 38, 114, 0.2);  var(--rosa con opacidad) 
+  border-left: 3px solid var(--rosa);
+  padding-left: 0.5rem;
+  transition: 0.2s;
+}*/
+
+    ul {
+      list-style-type: square;
+      padding-left: 2rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.95rem;
+      color: var(--texto);
+      padding-left: 0.5rem;
+      cursor: default; /* Importante: cursor normal en listas */
+    }
+
+    li::marker {
+      color: var(--rosa);
+    }
+
+    p {
+      margin-top: 1rem;
+      color: var(--amarillo);
+      font-size: 0.95rem;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--texto);
+      border-top: 1px solid var(--azul);
+      padding: 1rem;
+      font-size: 0.85rem;
+      background-color: rgba(28, 29, 26, 0.85);
+    }
+
+    .version {
+      font-size: 0.75rem;
+      color: var(--amarillo);
+      margin-left: 0.5rem;
+      font-weight: normal;
+    }
+
+    /* TRANSICIÓN GENERAL */
+    body, section, nav, footer {
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    /* ANIMACIÓN SLIDE/FADE para secciones */
+    section {
+      animation: fadeInSlide 0.8s ease both;
+    }
+
+    @keyframes fadeInSlide {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">
+        PORTAFOLIO <span class="version">· v1.0 - 22may2025</span>
+      </div>
+      <div class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</div>
+      <button id="modeToggle" title="Cambiar tema" style="background:none;border:none;color:var(--verde);font-size:1.2rem;cursor:pointer;">🌙</button>
+      <div class="nav-links">
+        <a href="#programacion-web">Web</a>
+        <a href="#programacion-python">Python</a>
+        <a href="#proyectos-institucionales">Proyectos</a>
+        <a href="#articulos-historicos">Artículos</a>
+        <a href="#rihla">RIHLA</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <h1>Portafolio Web</h1>
+    <p>Complemento visual e interactivo de mi C.V.</p>
+  </header>
+
+  <main>
+    <section id="programacion-web">
+      <h2><a href="#programacion-web">Programación Web</a></h2>
+      <ul>
+        <li>Páginas estáticas para PC y smartphones</li>
+        <li>Reel de fotos y catálogos</li>
+        <li>Ejercicios de programación</li>
+        <li>Leaflet: cartografía</li>
+        <li>Frameworks: Materialize, Carousel</li>
+        <li>Juegos: 2D, acertijos, mapas RPG</li>
+        <li>Visores 360°, imágenes equirectangulares</li>
+      </ul>
+    </section>
+
+    <section id="programacion-python">
+      <h2><a href="#programacion-python">Programación Python</a></h2>
+      <ul>
+        <li>Aplicaciones locales (standalone)</li>
+        <li>Apps con Electron</li>
+        <li>Servidores con Flask</li>
+        <li>Apps de control remoto</li>
+        <li>Chatbots</li>
+        <li>Centro multimedia</li>
+      </ul>
+    </section>
+
+    <section id="proyectos-institucionales">
+      <h2><a href="#proyectos-institucionales">Proyectos Institucionales</a></h2>
+      <ul>
+        <li>Atlas 1848</li>
+        <li>Censos históricos: mapas, cambios y permanencias</li>
+      </ul>
+    </section>
+
+    <section id="articulos-historicos">
+      <h2><a href="#articulos-historicos">Artículos o Blogs Históricos</a></h2>
+      <ul>
+        <li>Artículos publicados. Añadir complementos</li>
+        <li>El paisaje a mediados del siglo XIX (con imágenes IA)</li>
+        <li>Difusión de imágenes equirectangulares</li>
+        <li>La Comisión del Valle de México, 1857</li>
+        <li>Sobre técnica y cambio tecnológico</li>
+        <li>Mapas históricos interactivos</li>
+      </ul>
+    </section>
+
+    <section id="rihla">
+      <h2><a href="#rihla">RIHLA</a></h2>
+      <p><strong>Proyecto web que demuestra el manejo de:</strong></p>
+      <ul>
+        <li>Servidores</li>
+        <li>Bases de datos</li>
+        <li>Frontend</li>
+      </ul>
+      <p><em>Solución al tema de tener las fuentes bibliográficas organizadas en un solo lugar y en una nube personal. Disponible en todo momento.</em></p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 | Portafolio personal
+  </footer>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const navLinks = document.querySelectorAll('.nav-links a');
+      const navMenu = document.querySelector('.nav-links');
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (navMenu.classList.contains('show')) {
+            navMenu.classList.remove('show');
+          }
+        });
+      });
+    });
+  </script>
+
+  <script>
+  // Botón modo claro/oscuro
+  const toggle = document.getElementById("modeToggle");
+  const root = document.documentElement;
+
+  let isLight = false; // Estado inicial: oscuro (Monokai)
+
+  toggle.addEventListener("click", () => {
+    isLight = !isLight;
+    if (isLight) {
+      root.style.setProperty('--fondo', '#fefefe');
+      root.style.setProperty('--negro', '#ddd');
+      root.style.setProperty('--texto', '#1e1f1c');
+      root.style.setProperty('--verde', '#007f5f');
+      root.style.setProperty('--amarillo', '#a68c00');
+      root.style.setProperty('--azul', '#0077b6');
+      root.style.setProperty('--naranja', '#ee6c4d');
+      root.style.setProperty('--rosa', '#d62828');
+      toggle.textContent = "🌙";
+    } else {
+      root.style.setProperty('--fondo', '#272822');
+      root.style.setProperty('--negro', '#1e1f1c');
+      root.style.setProperty('--texto', '#F8F8F2');
+      root.style.setProperty('--verde', '#A6E22E');
+      root.style.setProperty('--amarillo', '#E6DB74');
+      root.style.setProperty('--azul', '#66D9EF');
+      root.style.setProperty('--naranja', '#FD971F');
+      root.style.setProperty('--rosa', '#F92672');
+      toggle.textContent = "☀️";
+    }
+  });
+
+  // Cerrar menú móvil al hacer clic en un enlace
+  document.addEventListener('DOMContentLoaded', function () {
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const navMenu = document.querySelector('.nav-links');
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (navMenu.classList.contains('show')) {
+          navMenu.classList.remove('show');
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
